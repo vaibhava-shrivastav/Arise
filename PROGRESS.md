@@ -3,7 +3,7 @@
 ## Phase Checklist
 
 - [x] **Phase 1: Setup** - Initialize npm, install dependencies, create folder structure, basic server.js with Express, MongoDB connection, trust proxy, helmet, rate-limit, session config
-- [ ] **Phase 2: Auth** - Google OAuth with Passport, login/logout/callback routes, session handling, protected route middleware, user model with Google profile fields
+- [x] **Phase 2: Auth** - Google OAuth with Passport, login/logout/callback routes, session handling, protected route middleware, user model with Google profile fields
 - [ ] **Phase 3: Models and Game Engine** - User, Quest, QuestLog, Penalty, Notification models; game logic in /src/services (XP calc, level/rank, stats, streak, penalty logic)
 - [ ] **Phase 4: API** - REST routes for: get profile, get today's quest, submit quest progress, get history, get leaderboard, get notifications, extra logs (sleep/water/meditation)
 - [ ] **Phase 5: Frontend from Stitch Designs** - HTML/CSS/JS in /public implementing System UI: dashboard, quest page, history, leaderboard, profile, notifications; typewriter effect, scanlines, glow animations
@@ -19,6 +19,18 @@
 - **Dev script**: Uses Node's built-in `--watch` flag (no nodemon needed for dev)
 - **MongoDB failure handling**: Exit process in production, warn only in development
 - **Trust proxy**: Set to 1 for Render deployment behind proxy
+- **Session config**: connect-mongo store, httpOnly cookies, sameSite 'lax', secure only in production, 7-day maxAge
+- **Cookie name**: Default 'connect.sid' (express-session default)
+- **Passport serialization**: Uses Hunter._id (MongoDB ObjectId)
+- **Auth routes**: Mounted at /auth (so routes are /auth/google, /auth/google/callback, /auth/logout)
+- **Protected API**: /api/me behind requireAuth middleware
+- **Frontend auth flow**: index.html has [ ARISE ] button → /auth/google → Google OAuth → callback → /status.html → fetches /api/me → shows hunter info or redirects to / on 401
 
 ## Known Bugs
 - (Add known bugs here as they are discovered)
+- **Note**: Manual browser testing required for full OAuth flow (can't automate browser OAuth). Test steps:
+  1. Fill .env with real GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, MONGO_URI, SESSION_SECRET, BASE_URL=http://localhost:3000
+  2. Run `npm run dev`
+  3. Open http://localhost:3000, click [ ARISE ], complete Google login
+  4. Confirm redirect to /status.html shows name and avatar
+  5. Confirm GET /api/me works while logged in and returns 401 after logout

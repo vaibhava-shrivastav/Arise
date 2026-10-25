@@ -3,8 +3,15 @@ import express from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import passport from 'passport';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+
+import configurePassport from './src/config/passport.js';
+import authRoutes from './src/routes/auth.js';
+import apiRoutes from './src/routes/api.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,6 +55,30 @@ app.use(helmet({
 // Body parser with 10kb limit
 app.use(express.json({ limit: '10kb' }));
 
+// Session middleware (must come before passport)
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions',
+  }),
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  },
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configure passport strategies
+configurePassport(passport);
+
 // Rate limiter for /api and /auth routes
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -59,6 +90,10 @@ const apiLimiter = rateLimit({
 
 app.use('/api', apiLimiter);
 app.use('/auth', apiLimiter);
+
+// Routes (must come before static files)
+app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
 // Serve static files from public
 app.use(express.static(join(__dirname, 'public')));

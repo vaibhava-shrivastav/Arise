@@ -50,6 +50,13 @@ export const gameConfig = {
     intelligence: 10,
     sense: 10,
   },
+
+  // Health log stat bonuses (once per day each)
+  healthLogStatGains: {
+    sleepHours: { vitality: 1 },
+    waterGlasses: { vitality: 1 },
+    meditationMinutes: { intelligence: 1, sense: 1 },
+  },
 };
 
 /**

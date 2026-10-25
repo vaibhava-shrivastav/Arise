@@ -5,7 +5,7 @@
 - [x] **Phase 1: Setup** - Initialize npm, install dependencies, create folder structure, basic server.js with Express, MongoDB connection, trust proxy, helmet, rate-limit, session config
 - [x] **Phase 2: Auth** - Google OAuth with Passport, login/logout/callback routes, session handling, protected route middleware, user model with Google profile fields
 - [x] **Phase 3: Models and Game Engine** - User, Quest, QuestLog, Penalty, Notification models; game logic in /src/services (XP calc, level/rank, stats, streak, penalty logic)
-- [ ] **Phase 4: API** - REST routes for: get profile, get today's quest, submit quest progress, get history, get leaderboard, get notifications, extra logs (sleep/water/meditation)
+- [x] **Phase 4: API** - REST routes for: get profile, get today's quest, submit quest progress, get history, get leaderboard, get notifications, extra logs (sleep/water/meditation)
 - [ ] **Phase 5: Frontend from Stitch Designs** - HTML/CSS/JS in /public implementing System UI: dashboard, quest page, history, leaderboard, profile, notifications; typewriter effect, scanlines, glow animations
 - [ ] **Phase 6: Penalty Cron and Notifications** - node-cron job at midnight user timezone: check missed quests, apply penalties, create Penalty records, create Notification records
 - [ ] **Phase 7: Polish and PWA** - Service worker, manifest.json, offline caching, install prompt, meta tags, Lighthouse audit, responsive fixes
@@ -34,6 +34,12 @@
 - **QuestLog**: compound unique index on (hunterId, date) ensures one log per hunter per day
 - **applyProgress & applyPenalty**: Pure-ish functions that mutate passed objects but don't save to DB — routes/jobs call .save()
 - **grantXp**: Handles multiple level-ups in a while-loop, updates rank automatically
+- **Zod validation**: All request bodies/params validated; 400 with clear error details on failure
+- **Health log once-per-day**: Enforced by checking if questLog.sleepHours/waterGlasses/meditationMinutes is null before applying; already-set fields returned in `alreadyLogged` response
+- **Health log stat bonuses**: Defined in gameConfig.healthLogStatGains (sleep→vitality, water→vitality, meditation→intelligence+sense)
+- **Leaderboard privacy**: Only returns name, avatar, level, rank, title — never email or googleId
+- **Timezone validation**: Uses Intl.DateTimeFormat try/catch to validate IANA timezone strings
+- **Integration testing**: Written using Node's built-in test runner against live MongoDB; mongodb-memory-server not used (uses local test DB instead, documented in test file)
 
 ## Known Bugs
 - (Add known bugs here as they are discovered)

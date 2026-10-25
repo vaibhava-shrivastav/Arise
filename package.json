@@ -1,0 +1,39 @@
+{
+  "name": "arise",
+  "version": "1.0.0",
+  "description": "A gamified health tracker styled like the \"System\" from Solo Leveling. Become a Hunter — complete Daily Quests, earn XP, level up, and rank from E to S.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaibhava-shrivastav/Arise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaibhava-shrivastav/Arise/issues"
+  },
+  "homepage": "https://github.com/vaibhava-shrivastav/Arise#readme",
+  "dependencies": {
+    "connect-mongo": "^6.0.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "mongoose": "^9.11.4",
+    "node-cron": "^4.6.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

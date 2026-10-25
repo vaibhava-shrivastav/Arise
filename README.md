@@ -7,11 +7,20 @@ A gamified health tracker styled like the "System" from Solo Leveling. Become a 
 - **Frontend**: Plain HTML/CSS/JS (no build step)
 - **Deploy**: Render Web Service
 
-## Quick Start (coming soon)
+## Local Setup
 ```bash
+# 1. Clone the repository
+git clone https://github.com/vaibhava-shrivastav/Arise.git
+cd Arise
+
+# 2. Install dependencies
 npm install
+
+# 3. Copy environment template and fill in your values
 cp .env.example .env
-# Fill in your values
+# Edit .env with your MONGO_URI (required), SESSION_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BASE_URL, PORT, ADMIN_SECRET
+
+# 4. Start development server (with file watching)
 npm run dev
 ```
 

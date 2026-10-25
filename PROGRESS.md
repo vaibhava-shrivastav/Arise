@@ -4,7 +4,7 @@
 
 - [x] **Phase 1: Setup** - Initialize npm, install dependencies, create folder structure, basic server.js with Express, MongoDB connection, trust proxy, helmet, rate-limit, session config
 - [x] **Phase 2: Auth** - Google OAuth with Passport, login/logout/callback routes, session handling, protected route middleware, user model with Google profile fields
-- [ ] **Phase 3: Models and Game Engine** - User, Quest, QuestLog, Penalty, Notification models; game logic in /src/services (XP calc, level/rank, stats, streak, penalty logic)
+- [x] **Phase 3: Models and Game Engine** - User, Quest, QuestLog, Penalty, Notification models; game logic in /src/services (XP calc, level/rank, stats, streak, penalty logic)
 - [ ] **Phase 4: API** - REST routes for: get profile, get today's quest, submit quest progress, get history, get leaderboard, get notifications, extra logs (sleep/water/meditation)
 - [ ] **Phase 5: Frontend from Stitch Designs** - HTML/CSS/JS in /public implementing System UI: dashboard, quest page, history, leaderboard, profile, notifications; typewriter effect, scanlines, glow animations
 - [ ] **Phase 6: Penalty Cron and Notifications** - node-cron job at midnight user timezone: check missed quests, apply penalties, create Penalty records, create Notification records
@@ -25,6 +25,15 @@
 - **Auth routes**: Mounted at /auth (so routes are /auth/google, /auth/google/callback, /auth/logout)
 - **Protected API**: /api/me behind requireAuth middleware
 - **Frontend auth flow**: index.html has [ ARISE ] button → /auth/google → Google OAuth → callback → /status.html → fetches /api/me → shows hunter info or redirects to / on 401
+- **Game config**: All numbers centralized in src/config/gameConfig.js (single source of truth)
+- **Date/timezone**: Uses Intl.DateTimeFormat with 'en-CA' locale for YYYY-MM-DD in user's timezone (no external date library)
+- **XP formula**: level * 100 for next level; 150 XP for full quest completion; 10 XP per partial item
+- **Rank thresholds**: E 1-7, D 8-14, C 15-24, B 25-34, A 35-49, S 50+
+- **Stat gains on completion**: +1 strength, +1 agility, +1 vitality
+- **Penalty**: -50 XP (floored at 0, never loses level), streak resets to 0
+- **QuestLog**: compound unique index on (hunterId, date) ensures one log per hunter per day
+- **applyProgress & applyPenalty**: Pure-ish functions that mutate passed objects but don't save to DB — routes/jobs call .save()
+- **grantXp**: Handles multiple level-ups in a while-loop, updates rank automatically
 
 ## Known Bugs
 - (Add known bugs here as they are discovered)

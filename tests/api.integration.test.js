@@ -143,11 +143,12 @@ describe('API Integration Tests', () => {
       const { default: gameEngine } = await import('../src/services/gameEngine.js');
       const { default: dateService } = await import('../src/services/dateService.js');
 
-      const questLog = await QuestLog.findOne({ hunterId: hunter._id });
+      // Get or create today's quest log (mirroring the route logic)
+      const today = dateService.getTodayString(hunter.timezone);
+      let questLog = await QuestLog.findOne({ hunterId: hunter._id, date: today });
       if (!questLog) {
-        const today = dateService.getTodayString(hunter.timezone);
         const items = gameEngine.buildDailyQuestItems(hunter);
-        await QuestLog.create({ hunterId: hunter._id, date: today, items });
+        questLog = await QuestLog.create({ hunterId: hunter._id, date: today, items });
       }
 
       // First completion of pushups

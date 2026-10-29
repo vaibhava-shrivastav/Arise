@@ -1,138 +1,562 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARISE - Status</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #050816;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Share Tech Mono', monospace;
-      color: #00d4ff;
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    .system-text {
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-      letter-spacing: 0.2em;
-      text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
-    }
-    .status-card {
-      background: rgba(0, 212, 255, 0.05);
-      border: 1px solid #00d4ff;
-      border-radius: 8px;
-      padding: 2rem;
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
-    }
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid #00d4ff;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-    }
-    .hunter-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-    }
-    .logout-btn {
-      background: transparent;
-      border: 2px solid #ff4444;
-      color: #ff4444;
-      padding: 0.75rem 1.5rem;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 5px #ff4444;
-      box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
-    }
-    .logout-btn:hover {
-      background: #ff4444;
-      color: #050816;
-      box-shadow: 0 0 30px rgba(255, 68, 68, 0.6);
-      text-shadow: none;
-    }
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .scanline {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 212, 255, 0.03),
-        rgba(0, 212, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-      pointer-events: none;
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-  <div class="scanline"></div>
-  <div class="system-text">[SYSTEM] ONLINE</div>
-  <div id="content" class="loading">
-    <div class="system-text" style="font-size: 1rem;">LOADING HUNTER DATA...</div>
-  </div>
-
-  <script>
-    async function loadHunter() {
-      try {
-        const res = await fetch('/api/me');
-        if (res.status === 401) {
-          window.location.href = '/';
-          return;
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <meta content="mobile_tab" name="shell-type"/>
+  <title>ARISE // Hunter Status</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-container": "#ffadb6",
+            "on-secondary-fixed": "#001b3c",
+            "primary-container": "#00d4ff",
+            "background": "#0f1321",
+            "primary-fixed-dim": "#3cd7ff",
+            "inverse-primary": "#00677e",
+            "surface-container-high": "#262939",
+            "surface-variant": "#303444",
+            "on-tertiary-fixed": "#400011",
+            "on-background": "#dfe1f6",
+            "on-surface-variant": "#bbc9cf",
+            "surface": "#0f1321",
+            "tertiary-fixed-dim": "#ffb2ba",
+            "on-secondary-container": "#002955",
+            "surface-container-low": "#171b2a",
+            "surface-container-lowest": "#0a0d1c",
+            "on-primary-fixed": "#001f27",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#004689",
+            "surface-container": "#1b1f2e",
+            "inverse-on-surface": "#2c303f",
+            "outline-variant": "#3c494e",
+            "surface-container-highest": "#303444",
+            "on-surface": "#dfe1f6",
+            "tertiary": "#ffd5d8",
+            "primary": "#a8e8ff",
+            "on-secondary": "#003061",
+            "on-tertiary-fixed-variant": "#910030",
+            "on-primary-container": "#00586b",
+            "secondary-container": "#3491ff",
+            "surface-dim": "#0f1321",
+            "on-tertiary-container": "#a30037",
+            "on-primary-fixed-variant": "#004e5f",
+            "secondary": "#a8c8ff",
+            "primary-fixed": "#b4ebff",
+            "secondary-fixed-dim": "#a8c8ff",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "inverse-surface": "#dfe1f6",
+            "on-primary": "#003642",
+            "tertiary-fixed": "#ffd9dc",
+            "surface-tint": "#3cd7ff",
+            "outline": "#859398",
+            "on-error": "#690005",
+            "secondary-fixed": "#d5e3ff",
+            "on-tertiary": "#670020",
+            "surface-bright": "#353849"
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          spacing: { "margin": "2.5rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "space-md": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem" },
+          fontFamily: {
+            "body-sm": ["Space Mono"],
+            "title-md": ["Space Mono"],
+            "display-lg-mobile": ["Space Grotesk"],
+            "body-lg": ["Space Mono"],
+            "label-md": ["Space Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "label-xs": ["Space Mono"],
+            "display-lg": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"]
+          },
+          fontSize: {
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "title-md": ["16px", { lineHeight: "24px", letterSpacing: "0.12em", fontWeight: "700" }],
+            "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "0.06em", fontWeight: "700" }],
+            "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "label-md": ["11px", { lineHeight: "16px", letterSpacing: "0.15em", fontWeight: "700" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "0.05em", fontWeight: "600" }],
+            "label-xs": ["9px", { lineHeight: "12px", letterSpacing: "0.2em", fontWeight: "700" }],
+            "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "0.08em", fontWeight: "700" }],
+            "headline-sm": ["22px", { lineHeight: "28px", letterSpacing: "0.04em", fontWeight: "600" }]
+          }
         }
-        const data = await res.json();
-        document.getElementById('content').innerHTML = `
-          <div class="status-card">
-            <img src="${data.avatar}" alt="${data.name}" class="avatar" onerror="this.style.display='none'">
-            <div class="hunter-name">Welcome, Hunter ${data.name}</div>
-            <button class="logout-btn" onclick="logout()">[ LOGOUT ]</button>
+      }
+    };
+  </script>
+  <link href="/css/system.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface font-body-sm text-on-surface min-h-screen flex flex-col relative selection:bg-primary-container selection:text-on-primary-container">
+  <!-- Top Navigation Header -->
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,212,255,0.08)]">
+    <div class="h-16 px-gutter-mobile flex items-center justify-between max-w-md mx-auto">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_#00d4ff] animate-pulse"></div>
+        <div class="flex flex-col">
+          <span class="font-label-xs text-label-xs text-primary-container uppercase tracking-widest">[SYS.VER // 4.12]</span>
+          <h1 class="font-title-md text-title-md text-on-surface uppercase tracking-wider">Status</h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm">
+        <div class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-xs text-label-xs tracking-wider" id="header-rank">
+          [RANK: E]
+        </div>
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(0,212,255,0.3)] overflow-hidden" id="header-avatar-container">
+          <span class="material-symbols-outlined text-on-primary text-[18px]" id="header-avatar-icon">person</span>
+          <img id="header-avatar-img" class="w-full h-full object-cover hidden" alt="Avatar"/>
+        </div>
+        <button id="logout-btn" title="Sign Out" aria-label="Sign Out" class="w-8 h-8 rounded bg-surface-container-high text-outline hover:text-error hover:bg-surface-variant flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-[18px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex flex-col relative w-full px-gutter-mobile pt-16 pb-24 bg-surface min-h-screen max-w-md mx-auto">
+    <div class="flex flex-col w-full gap-space-md select-none relative">
+      <!-- Scanline & Holographic Ambient Underlay -->
+      <div class="pointer-events-none fixed inset-0 overflow-hidden opacity-30 z-0">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,212,255,0.12)_0%,_transparent_70%)]"></div>
+        <div class="w-full h-full bg-[linear-gradient(rgba(0,212,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      </div>
+
+      <!-- 1. Top Hunter Bar & System Notification Trigger -->
+      <section class="relative z-10 flex items-center justify-between p-space-sm bg-surface-container-lowest/80 backdrop-blur-md rounded shadow-[0_0_15px_rgba(0,212,255,0.08)]">
+        <div class="flex items-center gap-space-sm">
+          <div class="relative flex items-center justify-center">
+            <!-- Glowing Ring Hologram Effect -->
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-primary via-primary-container to-secondary-container shadow-[0_0_12px_rgba(0,212,255,0.5)]">
+              <div class="w-full h-full rounded-full bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+                <img id="hunter-avatar" class="w-full h-full object-cover" alt="Hunter Avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300d4ff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"/>
+              </div>
+            </div>
+            <span class="absolute -bottom-1 -right-1 px-1 rounded bg-surface-container-high text-primary-container font-label-xs text-label-xs shadow-[0_0_8px_#00d4ff]">LIVE</span>
           </div>
-        `;
-      } catch (err) {
-        console.error(err);
-        window.location.href = '/';
-      }
-    }
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5">
+              <span class="font-title-md text-title-md text-on-surface uppercase tracking-wider" id="hunter-name">Connecting...</span>
+              <span class="material-symbols-outlined text-primary-container text-[14px]">verified</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-xs text-label-xs text-outline tracking-widest uppercase" id="hunter-id">ID: #HUNTER</span>
+              <span class="font-label-xs text-label-xs text-primary tracking-widest">[ONLINE]</span>
+            </div>
+          </div>
+        </div>
+        <!-- Alert / Inbox Module -->
+        <div class="flex items-center gap-2">
+          <button aria-label="System Alerts" id="notif-bell-btn" class="relative w-10 h-10 rounded flex items-center justify-center bg-surface-container-high/90 text-on-surface hover:text-primary-container active:scale-95 transition-all shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+            <span class="material-symbols-outlined text-[20px]">notifications_active</span>
+            <span id="notif-badge" class="hidden absolute -top-1 -right-1 h-4 w-4 items-center justify-center rounded-full bg-error-container text-on-error-container font-label-xs text-label-xs shadow-[0_0_8px_#ff3366] animate-pulse">0</span>
+          </button>
+        </div>
+      </section>
 
-    async function logout() {
+      <!-- 2. Primary Status Window & Level Display -->
+      <section class="relative z-10 p-space-md bg-surface-container-lowest/85 backdrop-blur-xl rounded shadow-[0_0_24px_rgba(0,212,255,0.15)] overflow-hidden">
+        <div class="absolute top-1 left-1 text-primary-container font-body-sm text-body-sm leading-none opacity-80 select-none">┌</div>
+        <div class="absolute top-1 right-1 text-primary-container font-body-sm text-body-sm leading-none opacity-80 select-none">┐</div>
+        <div class="absolute bottom-1 left-1 text-primary-container font-body-sm text-body-sm leading-none opacity-80 select-none">└</div>
+        <div class="absolute bottom-1 right-1 text-primary-container font-body-sm text-body-sm leading-none opacity-80 select-none">┘</div>
+
+        <!-- Panel Status Bar Header -->
+        <div class="flex items-center justify-between pb-space-xs mb-space-sm bg-gradient-to-r from-primary-container/10 via-primary-container/5 to-transparent px-2 py-1 rounded">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary-container text-[16px]">token</span>
+            <span class="font-title-md text-title-md text-primary-container tracking-widest">[ STATUS WINDOW ]</span>
+          </div>
+          <span class="font-label-xs text-label-xs text-outline tracking-widest uppercase">SYS.AUTH // MONARCH</span>
+        </div>
+
+        <!-- Core Hunter Profile Grid -->
+        <div class="grid grid-cols-12 gap-space-sm items-center">
+          <div class="col-span-7 flex flex-col gap-1.5">
+            <div class="flex flex-col">
+              <span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">Assigned Title</span>
+              <span class="font-body-lg text-body-lg text-on-surface font-bold tracking-wide" id="hunter-title">Novice Hunter</span>
+              <span class="font-label-xs text-label-xs text-primary-container tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-[11px]">bolt</span> Title Boost: Active
+              </span>
+            </div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high shadow-[0_0_10px_rgba(0,212,255,0.2)]">
+                <span class="material-symbols-outlined text-[13px] text-primary-container">shield</span>
+                <span class="font-label-md text-label-md text-on-surface uppercase tracking-widest" id="status-rank-badge">RANK: E</span>
+              </div>
+              <div class="px-2 py-0.5 rounded bg-surface-container text-outline font-label-xs text-label-xs tracking-wider">
+                CLASS: NONE
+              </div>
+            </div>
+          </div>
+
+          <!-- Sci-Fi Monumental Level Pod -->
+          <div class="col-span-5 flex flex-col items-end justify-center p-2 rounded bg-surface-container-high/60 relative">
+            <div class="absolute -top-1 right-2 text-primary-container font-label-xs text-label-xs tracking-widest uppercase">CURRENT TIER</div>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="font-label-md text-label-md text-primary-container uppercase tracking-widest">LVL.</span>
+              <span class="font-display-lg-mobile text-display-lg-mobile text-primary-container font-bold tracking-tight drop-shadow-[0_0_14px_rgba(0,212,255,0.9)]" id="hunter-level">1</span>
+            </div>
+            <span class="font-label-xs text-label-xs text-on-surface-variant tracking-widest uppercase">AWAKENED PHASE</span>
+          </div>
+        </div>
+
+        <!-- 3. XP Holographic Telemetry Gauge -->
+        <div class="mt-space-md pt-space-xs flex flex-col gap-1.5">
+          <div class="flex justify-between items-end">
+            <div class="flex items-center gap-1.5">
+              <span class="font-label-md text-label-md text-primary tracking-widest uppercase" id="xp-text">EXP: 0 / 100</span>
+              <span class="px-1 rounded bg-primary-container/20 text-primary-container font-label-xs text-label-xs font-bold" id="xp-percent">0%</span>
+            </div>
+            <span class="font-label-xs text-label-xs text-outline uppercase tracking-wider" id="xp-remaining">NEXT LVL IN: 100 XP</span>
+          </div>
+          <!-- Continuous dynamic bar -->
+          <div class="relative w-full h-3 bg-surface-container-lowest rounded overflow-hidden p-0.5 shadow-[inset_0_0_8px_rgba(0,0,0,0.8)]">
+            <div id="xp-bar" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary rounded-sm transition-all duration-500 shadow-[0_0_10px_#00d4ff]" style="width: 0%;"></div>
+          </div>
+          <div class="flex justify-between text-outline font-label-xs text-label-xs px-0.5">
+            <span>000</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Daily Streaks & Vitality HUD Dual Cards -->
+      <section class="grid grid-cols-2 gap-space-sm relative z-10">
+        <!-- Active Streak Module -->
+        <div class="flex flex-col justify-between p-space-sm bg-surface-container-lowest/85 backdrop-blur-md rounded shadow-[0_0_16px_rgba(0,212,255,0.06)] relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">ACTIVE STREAK</span>
+            <span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim drop-shadow-[0_0_8px_#ffb2ba]">local_fire_department</span>
+          </div>
+          <div class="my-2 flex items-baseline gap-1">
+            <span class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight" id="streak-count">0</span>
+            <span class="font-label-md text-label-md text-primary-container uppercase">DAYS</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <div class="w-full h-1.5 bg-surface-container-high rounded overflow-hidden">
+              <div id="streak-bar" class="h-full bg-gradient-to-r from-tertiary-fixed-dim to-primary-container shadow-[0_0_6px_#ffb2ba]" style="width: 20%;"></div>
+            </div>
+            <span class="font-label-xs text-label-xs text-outline tracking-widest uppercase">CYCLE: DAILY QUEST</span>
+          </div>
+        </div>
+        <!-- Personal Best Streak Module -->
+        <div class="flex flex-col justify-between p-space-sm bg-surface-container-lowest/85 backdrop-blur-md rounded shadow-[0_0_16px_rgba(0,212,255,0.06)] relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">BEST RECORD</span>
+            <span class="material-symbols-outlined text-[18px] text-primary-container drop-shadow-[0_0_8px_#00d4ff]">military_tech</span>
+          </div>
+          <div class="my-2 flex items-baseline gap-1">
+            <span class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight" id="best-streak-count">0</span>
+            <span class="font-label-md text-label-md text-primary-container uppercase">DAYS</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <div class="w-full h-1.5 bg-surface-container-high rounded overflow-hidden">
+              <div id="best-streak-bar" class="h-full bg-secondary-container shadow-[0_0_6px_#3491ff]" style="width: 40%;"></div>
+            </div>
+            <span class="font-label-xs text-label-xs text-outline tracking-widest uppercase">RECORD SYNC</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. STATS Matrix Panel: Hunter Attributes -->
+      <section class="relative z-10 p-space-md bg-surface-container-lowest/85 backdrop-blur-xl rounded shadow-[0_0_24px_rgba(0,212,255,0.12)] flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between pb-space-xs bg-surface-container-low px-2 py-1.5 rounded">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary-container text-[18px]">query_stats</span>
+            <h2 class="font-title-md text-title-md text-primary-container tracking-widest uppercase">[ HUNTER ATTRIBUTES ]</h2>
+          </div>
+          <div class="px-2 py-0.5 rounded bg-surface-container-high flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+            <span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">AP: 0</span>
+          </div>
+        </div>
+        <p class="font-label-xs text-label-xs text-outline uppercase tracking-widest px-1">
+          SYSTEM MATRIX CALIBRATION // SCALE BASE: 10 PTS
+        </p>
+
+        <!-- Attribute List -->
+        <div class="flex flex-col gap-2.5">
+          <!-- 1. STRENGTH -->
+          <div class="flex flex-col gap-1 p-2 rounded bg-surface-container-low/70 transition-colors hover:bg-surface-container-low">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_8px_rgba(0,212,255,0.3)]">
+                  <span class="material-symbols-outlined text-[15px]">swords</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface font-bold uppercase tracking-wider">Strength (STR)</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-title-md text-title-md text-primary-container font-bold drop-shadow-[0_0_8px_rgba(0,212,255,0.8)]" id="stat-str">10</span>
+                <span class="font-label-xs text-label-xs text-outline">/ 30</span>
+              </div>
+            </div>
+            <div class="w-full h-2 rounded bg-surface-container-high overflow-hidden p-0.5 flex">
+              <div id="stat-bar-str" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-300" style="width: 33.3%;"></div>
+            </div>
+          </div>
+
+          <!-- 2. AGILITY -->
+          <div class="flex flex-col gap-1 p-2 rounded bg-surface-container-low/70 transition-colors hover:bg-surface-container-low">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_8px_rgba(0,212,255,0.3)]">
+                  <span class="material-symbols-outlined text-[15px]">bolt</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface font-bold uppercase tracking-wider">Agility (AGI)</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-title-md text-title-md text-primary-container font-bold drop-shadow-[0_0_8px_rgba(0,212,255,0.8)]" id="stat-agi">10</span>
+                <span class="font-label-xs text-label-xs text-outline">/ 30</span>
+              </div>
+            </div>
+            <div class="w-full h-2 rounded bg-surface-container-high overflow-hidden p-0.5 flex">
+              <div id="stat-bar-agi" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-300" style="width: 33.3%;"></div>
+            </div>
+          </div>
+
+          <!-- 3. VITALITY -->
+          <div class="flex flex-col gap-1 p-2 rounded bg-surface-container-low/70 transition-colors hover:bg-surface-container-low">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_8px_rgba(0,212,255,0.3)]">
+                  <span class="material-symbols-outlined text-[15px]">favorite</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface font-bold uppercase tracking-wider">Vitality (VIT)</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-title-md text-title-md text-primary-container font-bold drop-shadow-[0_0_8px_rgba(0,212,255,0.8)]" id="stat-vit">10</span>
+                <span class="font-label-xs text-label-xs text-outline">/ 30</span>
+              </div>
+            </div>
+            <div class="w-full h-2 rounded bg-surface-container-high overflow-hidden p-0.5 flex">
+              <div id="stat-bar-vit" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-300" style="width: 33.3%;"></div>
+            </div>
+          </div>
+
+          <!-- 4. INTELLIGENCE -->
+          <div class="flex flex-col gap-1 p-2 rounded bg-surface-container-low/70 transition-colors hover:bg-surface-container-low">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_8px_rgba(0,212,255,0.3)]">
+                  <span class="material-symbols-outlined text-[15px]">psychology</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface font-bold uppercase tracking-wider">Intelligence (INT)</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-title-md text-title-md text-primary-container font-bold drop-shadow-[0_0_8px_rgba(0,212,255,0.8)]" id="stat-int">10</span>
+                <span class="font-label-xs text-label-xs text-outline">/ 30</span>
+              </div>
+            </div>
+            <div class="w-full h-2 rounded bg-surface-container-high overflow-hidden p-0.5 flex">
+              <div id="stat-bar-int" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-300" style="width: 33.3%;"></div>
+            </div>
+          </div>
+
+          <!-- 5. SENSE -->
+          <div class="flex flex-col gap-1 p-2 rounded bg-surface-container-low/70 transition-colors hover:bg-surface-container-low">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_8px_rgba(0,212,255,0.3)]">
+                  <span class="material-symbols-outlined text-[15px]">track_changes</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface font-bold uppercase tracking-wider">Perception (SEN)</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-title-md text-title-md text-primary-container font-bold drop-shadow-[0_0_8px_rgba(0,212,255,0.8)]" id="stat-sen">10</span>
+                <span class="font-label-xs text-label-xs text-outline">/ 30</span>
+              </div>
+            </div>
+            <div class="w-full h-2 rounded bg-surface-container-high overflow-hidden p-0.5 flex">
+              <div id="stat-bar-sen" class="h-full bg-gradient-to-r from-secondary-container via-primary-container to-primary shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-300" style="width: 33.3%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Prompt Footer / Telemetry Directive -->
+        <div class="mt-space-xs p-2.5 rounded bg-surface-container-high/80 flex items-center justify-between shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-[18px] animate-pulse">fitness_center</span>
+            <div class="flex flex-col">
+              <span class="font-label-xs text-label-xs text-on-surface font-bold uppercase">Daily Quest: Physical Conditioning</span>
+              <span class="font-label-xs text-label-xs text-outline">100 Push-ups, 100 Sit-ups, 100 Squats, 10km Run</span>
+            </div>
+          </div>
+          <a href="/quests.html" class="px-2.5 py-1.5 rounded bg-primary-container text-on-primary-container font-label-xs text-label-xs uppercase tracking-wider font-bold shadow-[0_0_12px_rgba(0,212,255,0.7)] active:scale-95 transition-transform flex items-center gap-1 no-underline">
+            <span>LOG</span>
+            <span class="material-symbols-outlined text-[12px]">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,212,255,0.12)]">
+    <div class="flex justify-around items-center h-20 px-space-xs max-w-md mx-auto">
+      <a aria-current="page" class="flex flex-col items-center justify-center gap-1 w-14 h-14 transition-colors text-primary-container relative drop-shadow-[0_0_10px_rgba(0,212,255,0.8)]" href="/status.html">
+        <span class="material-symbols-outlined text-[22px]">vital_signs</span>
+        <span class="font-label-xs text-label-xs uppercase">Status</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/quests.html">
+        <span class="material-symbols-outlined text-[22px]">assignment</span>
+        <span class="font-label-xs text-label-xs uppercase">Quests</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/history.html">
+        <span class="material-symbols-outlined text-[22px]">monitoring</span>
+        <span class="font-label-xs text-label-xs uppercase">History</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="#" id="nav-shadows">
+        <span class="material-symbols-outlined text-[22px]">group_work</span>
+        <span class="font-label-xs text-label-xs uppercase">Shadows</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/leaderboard.html">
+        <span class="material-symbols-outlined text-[22px]">military_tech</span>
+        <span class="font-label-xs text-label-xs uppercase">Rank</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/system-ui.js"></script>
+  <script>
+    // Load hunter data on page load
+    async function loadStatus() {
       try {
-        await fetch('/auth/logout', { method: 'POST' });
-        window.location.href = '/';
+        const hunter = await apiGet('/api/me');
+        if (!hunter) return;
+
+        // Header info
+        document.getElementById('header-rank').textContent = `[RANK: ${hunter.rank || 'E'}]`;
+        if (hunter.avatar) {
+          const avatarImg = document.getElementById('header-avatar-img');
+          avatarImg.src = hunter.avatar;
+          avatarImg.classList.remove('hidden');
+          document.getElementById('header-avatar-icon').classList.add('hidden');
+          document.getElementById('hunter-avatar').src = hunter.avatar;
+        }
+
+        // Profile bar
+        document.getElementById('hunter-name').textContent = hunter.name || 'Hunter';
+        document.getElementById('hunter-id').textContent = `ID: #${String(hunter.id || '').slice(-6).toUpperCase() || 'HUNTER'}`;
+        document.getElementById('hunter-title').textContent = hunter.title || 'Novice Hunter';
+        document.getElementById('status-rank-badge').textContent = `RANK: ${hunter.rank || 'E'}`;
+        document.getElementById('hunter-level').textContent = hunter.level || 1;
+
+        // XP Gauges
+        const xp = Number(hunter.xp) || 0;
+        const xpNeeded = Number(hunter.xpNeeded) || (hunter.level * 100);
+        const xpPct = Math.min(100, Math.max(0, (xp / xpNeeded) * 100));
+        document.getElementById('xp-text').textContent = `EXP: ${xp} / ${xpNeeded}`;
+        document.getElementById('xp-percent').textContent = `${xpPct.toFixed(1)}%`;
+        document.getElementById('xp-remaining').textContent = `NEXT LVL IN: ${Math.max(0, xpNeeded - xp)} XP`;
+        document.getElementById('xp-bar').style.width = `${xpPct}%`;
+
+        // Streaks
+        const streak = Number(hunter.streak) || 0;
+        const bestStreak = Number(hunter.bestStreak) || 0;
+        document.getElementById('streak-count').textContent = streak;
+        document.getElementById('best-streak-count').textContent = bestStreak;
+        document.getElementById('streak-bar').style.width = `${Math.min(100, streak * 10)}%`;
+        document.getElementById('best-streak-bar').style.width = `${Math.min(100, bestStreak * 10)}%`;
+
+        // Stats
+        const stats = hunter.stats || {};
+        const str = Number(stats.strength) || 10;
+        const agi = Number(stats.agility) || 10;
+        const vit = Number(stats.vitality) || 10;
+        const int = Number(stats.intelligence) || 10;
+        const sen = Number(stats.sense) || 10;
+
+        document.getElementById('stat-str').textContent = str;
+        document.getElementById('stat-agi').textContent = agi;
+        document.getElementById('stat-vit').textContent = vit;
+        document.getElementById('stat-int').textContent = int;
+        document.getElementById('stat-sen').textContent = sen;
+
+        // Scale bar relative to 30 or highest stat
+        const maxStat = Math.max(30, str, agi, vit, int, sen);
+        document.getElementById('stat-bar-str').style.width = `${(str / maxStat) * 100}%`;
+        document.getElementById('stat-bar-agi').style.width = `${(agi / maxStat) * 100}%`;
+        document.getElementById('stat-bar-vit').style.width = `${(vit / maxStat) * 100}%`;
+        document.getElementById('stat-bar-int').style.width = `${(int / maxStat) * 100}%`;
+        document.getElementById('stat-bar-sen').style.width = `${(sen / maxStat) * 100}%`;
+
+        // Check notifications
+        loadNotifications();
       } catch (err) {
-        console.error(err);
+        console.error('Failed to load status:', err);
       }
     }
 
-    loadHunter();
+    async function loadNotifications() {
+      try {
+        const notifs = await apiGet('/api/notifications?unreadOnly=true');
+        const badge = document.getElementById('notif-badge');
+        if (Array.isArray(notifs) && notifs.length > 0) {
+          badge.textContent = notifs.length > 99 ? '99+' : notifs.length;
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        } else {
+          badge.classList.add('hidden');
+          badge.classList.remove('flex');
+        }
+      } catch (err) {
+        // Non-critical
+      }
+    }
+
+    // Logout handler
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+      try {
+        await apiPost('/auth/logout');
+        window.location.href = '/';
+      } catch (err) {
+        window.location.href = '/';
+      }
+    });
+
+    // Shadows placeholder
+    document.getElementById('nav-shadows')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSystemToast('[SYSTEM]', 'Monarch Domain: Shadows Army locked until S-Rank Awakening.', 'info');
+    });
+
+    // Notifications button click
+    document.getElementById('notif-bell-btn')?.addEventListener('click', async () => {
+      try {
+        const notifs = await apiGet('/api/notifications?unreadOnly=true');
+        if (Array.isArray(notifs) && notifs.length > 0) {
+          const msgs = notifs.map(n => n.message).slice(0, 3).join('\n');
+          showSystemModal({
+            title: '[ SYSTEM INBOX ]',
+            subtitle: `${notifs.length} Unread System Telemetry Notices`,
+            message: msgs,
+            buttonText: '[ MARK ALL READ ]',
+            onConfirm: async () => {
+              await apiPost('/api/notifications/read-all');
+              loadNotifications();
+            }
+          });
+        } else {
+          showSystemToast('[SYSTEM]', 'No pending unread system directives.', 'info');
+        }
+      } catch (err) {
+        // Ignore
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', loadStatus);
   </script>
 </body>
 </html>

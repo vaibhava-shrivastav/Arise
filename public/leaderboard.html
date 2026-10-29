@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <meta content="mobile_tab" name="shell-type"/>
+  <title>ARISE // Hunter Rankings</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-container": "#ffadb6",
+            "on-secondary-fixed": "#001b3c",
+            "primary-container": "#00d4ff",
+            "background": "#0f1321",
+            "primary-fixed-dim": "#3cd7ff",
+            "inverse-primary": "#00677e",
+            "surface-container-high": "#262939",
+            "surface-variant": "#303444",
+            "on-tertiary-fixed": "#400011",
+            "on-background": "#dfe1f6",
+            "on-surface-variant": "#bbc9cf",
+            "surface": "#0f1321",
+            "tertiary-fixed-dim": "#ffb2ba",
+            "on-secondary-container": "#002955",
+            "surface-container-low": "#171b2a",
+            "surface-container-lowest": "#0a0d1c",
+            "on-primary-fixed": "#001f27",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#004689",
+            "surface-container": "#1b1f2e",
+            "inverse-on-surface": "#2c303f",
+            "outline-variant": "#3c494e",
+            "surface-container-highest": "#303444",
+            "on-surface": "#dfe1f6",
+            "tertiary": "#ffd5d8",
+            "primary": "#a8e8ff",
+            "on-secondary": "#003061",
+            "on-tertiary-fixed-variant": "#910030",
+            "on-primary-container": "#00586b",
+            "secondary-container": "#3491ff",
+            "surface-dim": "#0f1321",
+            "on-tertiary-container": "#a30037",
+            "on-primary-fixed-variant": "#004e5f",
+            "secondary": "#a8c8ff",
+            "primary-fixed": "#b4ebff",
+            "secondary-fixed-dim": "#a8c8ff",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "inverse-surface": "#dfe1f6",
+            "on-primary": "#003642",
+            "tertiary-fixed": "#ffd9dc",
+            "surface-tint": "#3cd7ff",
+            "outline": "#859398",
+            "on-error": "#690005",
+            "secondary-fixed": "#d5e3ff",
+            "on-tertiary": "#670020",
+            "surface-bright": "#353849"
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          spacing: { "margin": "2.5rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "space-md": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem" },
+          fontFamily: {
+            "body-sm": ["Space Mono"],
+            "title-md": ["Space Mono"],
+            "display-lg-mobile": ["Space Grotesk"],
+            "body-lg": ["Space Mono"],
+            "label-md": ["Space Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "label-xs": ["Space Mono"],
+            "display-lg": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"]
+          },
+          fontSize: {
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "title-md": ["16px", { lineHeight: "24px", letterSpacing: "0.12em", fontWeight: "700" }],
+            "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "0.06em", fontWeight: "700" }],
+            "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "label-md": ["11px", { lineHeight: "16px", letterSpacing: "0.15em", fontWeight: "700" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "0.05em", fontWeight: "600" }],
+            "label-xs": ["9px", { lineHeight: "12px", letterSpacing: "0.2em", fontWeight: "700" }],
+            "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "0.08em", fontWeight: "700" }],
+            "headline-sm": ["22px", { lineHeight: "28px", letterSpacing: "0.04em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+  <link href="/css/system.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface font-body-sm text-on-surface min-h-screen flex flex-col relative selection:bg-primary-container selection:text-on-primary-container">
+  <!-- Top Header -->
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,212,255,0.08)]">
+    <div class="h-16 px-gutter-mobile flex items-center justify-between max-w-md mx-auto">
+      <a href="/status.html" aria-label="Go Back" class="w-10 h-10 -ml-2 rounded flex items-center justify-center text-primary-container hover:bg-surface-container-high transition-colors no-underline">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <div class="flex flex-col items-center justify-center">
+        <span class="font-label-xs text-label-xs text-primary-container uppercase tracking-widest">[SYS.VER // 4.12]</span>
+        <h1 class="font-title-md text-title-md text-on-surface uppercase tracking-wider text-center">Hunter Rankings</h1>
+      </div>
+      <div class="flex items-center gap-space-xs">
+        <button id="notif-btn" aria-label="System Notifications" class="relative w-10 h-10 -mr-2 rounded flex items-center justify-center text-primary-container hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[24px]">notifications</span>
+          <span id="notif-dot" class="hidden absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#ffd5d8]"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex flex-col relative w-full px-gutter-mobile pt-16 pb-24 bg-surface min-h-screen max-w-md mx-auto">
+    <div class="flex flex-col w-full relative space-y-space-md select-none">
+      <!-- System Status Ticker & Scope Selector -->
+      <div class="relative bg-surface-container/80 backdrop-blur-md rounded-lg p-space-sm flex flex-col gap-space-sm shadow-md">
+        <div class="absolute top-1 left-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┌</div>
+        <div class="absolute top-1 right-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┐</div>
+        <div class="absolute bottom-1 left-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">└</div>
+        <div class="absolute bottom-1 right-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┘</div>
+
+        <div class="flex items-center justify-between px-space-xs">
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_#00d4ff]"></span>
+            <span class="font-label-xs text-label-xs text-primary-container tracking-widest uppercase">[ SYS.LEADERBOARD // GLOBAL_SYNC ]</span>
+          </div>
+          <span class="font-label-xs text-label-xs text-on-surface-variant uppercase" id="cycle-tag">CYCLE #42</span>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="grid grid-cols-3 gap-1 bg-surface-container-lowest p-0.5 rounded" id="scope-selector">
+          <button class="scope-btn py-1.5 text-center font-label-xs text-label-xs text-on-primary-fixed bg-primary-container shadow-[0_0_12px_rgba(0,212,255,0.4)] rounded transition-all cursor-pointer" data-scope="all">
+            ALL-TIME
+          </button>
+          <button class="scope-btn py-1.5 text-center font-label-xs text-label-xs text-on-surface-variant hover:text-on-surface transition-colors rounded cursor-pointer" data-scope="weekly">
+            WEEKLY CYCLE
+          </button>
+          <button class="scope-btn py-1.5 text-center font-label-xs text-label-xs text-on-surface-variant hover:text-on-surface transition-colors rounded cursor-pointer" data-scope="local">
+            LOCAL GUILD
+          </button>
+        </div>
+
+        <!-- Reset Counter -->
+        <div class="flex items-center justify-between px-space-xs text-on-surface-variant font-label-xs text-label-xs">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px] text-primary-container">timer</span>
+            <span>RANKING CALIBRATION</span>
+          </div>
+          <span class="text-primary font-bold tracking-widest">[REAL-TIME]</span>
+        </div>
+      </div>
+
+      <!-- Top-3 Hunter Podium Section -->
+      <div class="relative bg-surface-container/60 backdrop-blur-md rounded-xl p-space-sm pt-space-md shadow-lg" id="podium-section">
+        <div class="flex items-center justify-between mb-space-sm px-space-xs">
+          <span class="font-label-xs text-label-xs text-tertiary-fixed tracking-widest uppercase flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px] text-tertiary">workspace_premium</span>
+            APEX DIVISION // NATIONAL HONORS
+          </span>
+          <span class="font-label-xs text-label-xs text-on-surface-variant uppercase">SYNCHRONIZED</span>
+        </div>
+
+        <!-- Podium Grid -->
+        <div class="grid grid-cols-3 gap-1.5 items-end pt-3" id="podium-grid">
+          <!-- Populated by JavaScript -->
+          <div class="col-span-3 text-center py-6 text-outline font-label-xs animate-pulse">
+            CALCULATING APEX HUNTER STANDINGS...
+          </div>
+        </div>
+      </div>
+
+      <!-- Telemetry Header -->
+      <div class="flex items-center justify-between px-space-xs pt-1">
+        <div class="flex items-center gap-1.5">
+          <span class="font-label-xs text-label-xs text-primary-container uppercase tracking-widest">[ ROSTER // ACTIVE REGISTRANTS ]</span>
+        </div>
+        <span class="font-label-xs text-label-xs text-on-surface-variant font-bold" id="registrants-count">-- LOGGED</span>
+      </div>
+
+      <!-- Current User Vessel Card (If logged in) -->
+      <div id="current-user-card" class="relative bg-surface-container-high rounded-lg p-3 flex flex-col gap-2 shadow-[0_0_20px_rgba(0,212,255,0.25)] hidden">
+        <div class="absolute top-1 left-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┌</div>
+        <div class="absolute top-1 right-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┐</div>
+        <div class="absolute bottom-1 left-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">└</div>
+        <div class="absolute bottom-1 right-1 font-label-xs text-primary-container leading-none pointer-events-none select-none">┘</div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-fixed font-label-xs text-[9px] font-bold uppercase tracking-widest shadow-[0_0_8px_#00d4ff]">
+              [ YOU // VESSEL ]
+            </span>
+            <span class="font-label-xs text-label-xs text-primary font-bold">CURRENT SYNC</span>
+          </div>
+          <div class="flex items-center gap-1 text-primary-container font-label-xs text-[10px] font-bold">
+            <span class="material-symbols-outlined text-[14px]">trending_up</span>
+            <span id="user-rank-status">ACTIVE HUNTER</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="font-title-md text-title-md text-primary-container w-6 text-center font-bold" id="user-leaderboard-pos">#--</span>
+            <div class="relative w-10 h-10 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary-container via-surface-variant to-primary shadow-[0_0_10px_rgba(0,212,255,0.5)] flex-shrink-0">
+              <img id="user-card-avatar" class="w-full h-full object-cover rounded-full" alt="User Avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300d4ff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"/>
+            </div>
+            <div class="min-w-0 flex flex-col">
+              <div class="font-title-md text-title-md text-on-surface font-bold tracking-wide truncate" id="user-card-name">Hunter</div>
+              <span class="font-label-xs text-label-xs text-primary-fixed" id="user-card-meta">LVL. 1 • Novice</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end flex-shrink-0">
+            <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-xs text-[9px] font-bold shadow-[inset_0_0_6px_rgba(0,212,255,0.3)]" id="user-card-rank">[E-RANK]</span>
+            <span class="font-label-md text-label-md text-primary-container mt-0.5 font-bold" id="user-card-xp">0 XP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hunter List Roster (Rank #4 to #20) -->
+      <div class="flex flex-col space-y-1.5" id="roster-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Operational Telemetry Bar -->
+      <div class="bg-surface-container-lowest/90 rounded-lg p-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs shadow-inner">
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[15px] text-primary-container">sync</span>
+          <span>SYSTEM FREQUENCY: 144HZ</span>
+        </div>
+        <span class="text-primary-container font-mono tracking-wider">[ONLINE]</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,212,255,0.12)]">
+    <div class="flex justify-around items-center h-20 px-space-xs max-w-md mx-auto">
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/status.html">
+        <span class="material-symbols-outlined text-[22px]">vital_signs</span>
+        <span class="font-label-xs text-label-xs uppercase">Status</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/quests.html">
+        <span class="material-symbols-outlined text-[22px]">assignment</span>
+        <span class="font-label-xs text-label-xs uppercase">Quests</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/history.html">
+        <span class="material-symbols-outlined text-[22px]">monitoring</span>
+        <span class="font-label-xs text-label-xs uppercase">History</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="#" id="nav-shadows">
+        <span class="material-symbols-outlined text-[22px]">group_work</span>
+        <span class="font-label-xs text-label-xs uppercase">Shadows</span>
+      </a>
+      <a aria-current="page" class="flex flex-col items-center justify-center gap-1 w-14 h-14 transition-colors text-primary-container relative drop-shadow-[0_0_10px_rgba(0,212,255,0.8)]" href="/leaderboard.html">
+        <span class="material-symbols-outlined text-[22px]">military_tech</span>
+        <span class="font-label-xs text-label-xs uppercase">Rank</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/system-ui.js"></script>
+  <script>
+    let currentHunter = null;
+    let leaderboardData = [];
+
+    const defaultAvatarSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300d4ff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+
+    async function loadLeaderboard() {
+      try {
+        const [me, lb, notifs] = await Promise.all([
+          apiGet('/api/me').catch(() => null),
+          apiGet('/api/leaderboard'),
+          apiGet('/api/notifications?unreadOnly=true').catch(() => [])
+        ]);
+
+        currentHunter = me;
+        leaderboardData = Array.isArray(lb) ? lb : [];
+
+        if (Array.isArray(notifs) && notifs.length > 0) {
+          document.getElementById('notif-dot').classList.remove('hidden');
+        }
+
+        document.getElementById('registrants-count').textContent = `${leaderboardData.length} LOGGED`;
+
+        renderPodium(leaderboardData);
+        renderRoster(leaderboardData);
+        renderUserCard(currentHunter, leaderboardData);
+      } catch (err) {
+        console.error('Failed to load leaderboard:', err);
+      }
+    }
+
+    function renderPodium(hunters) {
+      const podium = document.getElementById('podium-grid');
+      podium.innerHTML = '';
+
+      if (hunters.length === 0) {
+        podium.innerHTML = '<div class="col-span-3 text-center py-6 text-outline font-label-xs">NO HUNTERS AWAKENED IN LEADERBOARD YET</div>';
+        return;
+      }
+
+      const h1 = hunters[0] || null;
+      const h2 = hunters[1] || null;
+      const h3 = hunters[2] || null;
+
+      // Rank #2 (Left)
+      podium.appendChild(buildPodiumCard(h2, 2));
+      // Rank #1 (Center elevated)
+      podium.appendChild(buildPodiumCard(h1, 1));
+      // Rank #3 (Right)
+      podium.appendChild(buildPodiumCard(h3, 3));
+    }
+
+    function buildPodiumCard(hunter, rankNum) {
+      const card = document.createElement('div');
+      if (!hunter) {
+        card.className = "bg-surface-container-high/40 rounded-lg p-2 flex flex-col items-center text-center opacity-40";
+        card.innerHTML = `<span class="font-label-xs text-[9px] text-outline">VACANT</span>`;
+        return card;
+      }
+
+      const isFirst = rankNum === 1;
+      const avatarSrc = hunter.avatar || defaultAvatarSvg;
+      const isMe = currentHunter && (hunter._id === currentHunter.id || hunter.name === currentHunter.name);
+      const ringGlow = isMe ? 'ring-2 ring-primary-container' : '';
+
+      if (isFirst) {
+        card.className = `relative bg-surface-container-highest rounded-lg p-2.5 flex flex-col items-center text-center -translate-y-2 shadow-xl ${ringGlow}`;
+        card.innerHTML = `
+          <div class="absolute top-1 left-1 font-label-xs text-tertiary leading-none pointer-events-none select-none">┌</div>
+          <div class="absolute top-1 right-1 font-label-xs text-tertiary leading-none pointer-events-none select-none">┐</div>
+          <div class="absolute -top-5 flex flex-col items-center">
+            <span class="material-symbols-outlined text-[20px] text-tertiary animate-bounce drop-shadow-[0_0_8px_#ffd5d8]" style="font-variation-settings: 'FILL' 1;">crown</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container-lowest text-tertiary font-label-xs text-[9px] font-bold tracking-widest shadow-[0_0_12px_rgba(255,213,216,0.6)]">
+              RANK #1
+            </span>
+          </div>
+          <div class="relative w-16 h-16 mt-2 mb-1.5 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-tertiary via-primary-container to-secondary-container">
+            <img class="w-full h-full object-cover rounded-full" src="${avatarSrc}" alt="${escapeHtml(hunter.name)}"/>
+          </div>
+          <div class="w-full min-w-0">
+            <div class="font-headline-sm text-title-md text-on-surface font-bold truncate">${escapeHtml(hunter.name)}</div>
+            <div class="font-label-xs text-[8px] text-tertiary-fixed truncate">${escapeHtml(hunter.title || 'Apex Hunter')}</div>
+          </div>
+          <div class="mt-1.5 px-2 py-0.5 rounded bg-tertiary-container/40 text-tertiary font-label-xs text-[9px] tracking-widest font-bold shadow-[0_0_10px_rgba(255,213,216,0.3)]">
+            [${hunter.rank || 'S'}-RANK]
+          </div>
+          <div class="mt-1 font-label-md text-label-md text-primary-container font-bold">LVL. ${hunter.level || 1}</div>
+        `;
+      } else if (rankNum === 2) {
+        card.className = `relative bg-surface-container-high/90 rounded-lg p-2 flex flex-col items-center text-center shadow-md ${ringGlow}`;
+        card.innerHTML = `
+          <div class="absolute -top-3.5 px-1.5 py-0.5 rounded bg-surface-container-lowest text-secondary font-label-xs text-label-xs uppercase tracking-widest shadow-[0_0_8px_rgba(168,200,255,0.4)]">
+            NO. 02
+          </div>
+          <div class="relative w-14 h-14 mt-1 mb-1.5 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-secondary/40 via-surface-variant to-secondary">
+            <img class="w-full h-full object-cover rounded-full" src="${avatarSrc}" alt="${escapeHtml(hunter.name)}"/>
+          </div>
+          <div class="w-full min-w-0">
+            <div class="font-title-md text-[11px] leading-tight text-on-surface font-bold truncate">${escapeHtml(hunter.name)}</div>
+            <div class="font-label-xs text-[8px] text-on-surface-variant truncate">${escapeHtml(hunter.title || 'Elite Hunter')}</div>
+          </div>
+          <div class="mt-1.5 px-1.5 py-0.5 rounded bg-tertiary-container/30 text-tertiary font-label-xs text-[8px] tracking-wider font-bold">
+            [${hunter.rank || 'A'}-RANK]
+          </div>
+          <div class="mt-1 font-label-xs text-[9px] text-primary tracking-tight">LVL. ${hunter.level || 1}</div>
+        `;
+      } else {
+        card.className = `relative bg-surface-container-high/90 rounded-lg p-2 flex flex-col items-center text-center shadow-md ${ringGlow}`;
+        card.innerHTML = `
+          <div class="absolute -top-3.5 px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant font-label-xs text-label-xs uppercase tracking-widest shadow-[0_0_8px_rgba(187,201,207,0.3)]">
+            NO. 03
+          </div>
+          <div class="relative w-14 h-14 mt-1 mb-1.5 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-outline via-surface-variant to-tertiary-fixed-dim">
+            <img class="w-full h-full object-cover rounded-full" src="${avatarSrc}" alt="${escapeHtml(hunter.name)}"/>
+          </div>
+          <div class="w-full min-w-0">
+            <div class="font-title-md text-[11px] leading-tight text-on-surface font-bold truncate">${escapeHtml(hunter.name)}</div>
+            <div class="font-label-xs text-[8px] text-on-surface-variant truncate">${escapeHtml(hunter.title || 'Vanguard')}</div>
+          </div>
+          <div class="mt-1.5 px-1.5 py-0.5 rounded bg-tertiary-container/30 text-tertiary font-label-xs text-[8px] tracking-wider font-bold">
+            [${hunter.rank || 'B'}-RANK]
+          </div>
+          <div class="mt-1 font-label-xs text-[9px] text-primary tracking-tight">LVL. ${hunter.level || 1}</div>
+        `;
+      }
+
+      return card;
+    }
+
+    function renderRoster(hunters) {
+      const container = document.getElementById('roster-list');
+      container.innerHTML = '';
+
+      const rosterItems = hunters.slice(3); // Rank 4 onwards
+      if (rosterItems.length === 0) {
+        if (hunters.length <= 3 && hunters.length > 0) {
+          container.innerHTML = `<div class="py-3 text-center text-outline font-label-xs">[ END OF APEX DIVISION ROSTER ]</div>`;
+        }
+        return;
+      }
+
+      rosterItems.forEach((hunter, idx) => {
+        const rankIndex = idx + 4;
+        const isMe = currentHunter && (hunter._id === currentHunter.id || hunter.name === currentHunter.name);
+        const card = document.createElement('div');
+        const highlightClass = isMe
+          ? 'bg-surface-container-high border border-primary-container shadow-[0_0_16px_rgba(0,212,255,0.3)]'
+          : 'bg-surface-container/70 shadow-sm';
+
+        const rankBadgeStyle = getRankBadgeStyle(hunter.rank);
+
+        card.className = `${highlightClass} rounded-lg p-2.5 flex items-center justify-between transition-colors`;
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="font-label-md text-label-md ${isMe ? 'text-primary-container font-black' : 'text-on-surface-variant font-bold'} w-5 text-center">
+              ${String(rankIndex).padStart(2, '0')}
+            </span>
+            <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high flex-shrink-0">
+              <img class="w-full h-full object-cover" src="${hunter.avatar || defaultAvatarSvg}" alt="${escapeHtml(hunter.name)}"/>
+            </div>
+            <div class="min-w-0 flex flex-col">
+              <div class="font-title-md text-body-sm text-on-surface font-bold truncate flex items-center gap-1.5">
+                <span>${escapeHtml(hunter.name)}</span>
+                ${isMe ? '<span class="text-[9px] text-primary-container font-mono font-bold">[YOU]</span>' : ''}
+              </div>
+              <span class="font-label-xs text-label-xs text-on-surface-variant">LVL. ${hunter.level || 1} • ${escapeHtml(hunter.title || 'Hunter')}</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end flex-shrink-0">
+            <span class="px-1.5 py-0.5 rounded ${rankBadgeStyle} font-label-xs text-[8px] font-bold">[${hunter.rank || 'E'}-RANK]</span>
+            <span class="font-label-xs text-label-xs text-primary-fixed mt-0.5">LVL ${hunter.level || 1}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderUserCard(hunter, hunters) {
+      if (!hunter) return;
+
+      const userCard = document.getElementById('current-user-card');
+      userCard.classList.remove('hidden');
+
+      // Find position in leaderboard
+      const idx = hunters.findIndex(h => h._id === hunter.id || h.name === hunter.name);
+      const posText = idx >= 0 ? `#${idx + 1}` : '#--';
+      document.getElementById('user-leaderboard-pos').textContent = posText;
+
+      document.getElementById('user-card-name').textContent = hunter.name || 'Hunter';
+      document.getElementById('user-card-meta').textContent = `LVL. ${hunter.level || 1} • ${hunter.title || 'Hunter'}`;
+      document.getElementById('user-card-rank').textContent = `[${hunter.rank || 'E'}-RANK]`;
+      document.getElementById('user-card-xp').textContent = `${hunter.xp || 0} XP`;
+      if (hunter.avatar) {
+        document.getElementById('user-card-avatar').src = hunter.avatar;
+      }
+    }
+
+    function getRankBadgeStyle(rank) {
+      switch (rank) {
+        case 'S':
+          return 'bg-tertiary-container/30 text-tertiary shadow-[0_0_8px_rgba(255,213,216,0.3)]';
+        case 'A':
+          return 'bg-on-tertiary-container/30 text-tertiary-container shadow-[0_0_8px_rgba(255,173,182,0.3)]';
+        case 'B':
+          return 'bg-secondary-container/20 text-secondary-fixed';
+        case 'C':
+          return 'bg-primary/20 text-primary-fixed-dim';
+        case 'D':
+          return 'bg-surface-container-highest text-primary';
+        case 'E':
+        default:
+          return 'bg-surface-container-highest text-outline';
+      }
+    }
+
+    // Shadows
+    document.getElementById('nav-shadows')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSystemToast('[SYSTEM]', 'Monarch Domain: Shadows Army locked until S-Rank Awakening.', 'info');
+    });
+
+    // Scope selection toggle
+    document.querySelectorAll('.scope-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scope-btn').forEach(b => {
+          b.className = 'scope-btn py-1.5 text-center font-label-xs text-label-xs text-on-surface-variant hover:text-on-surface transition-colors rounded cursor-pointer';
+        });
+        btn.className = 'scope-btn py-1.5 text-center font-label-xs text-label-xs text-on-primary-fixed bg-primary-container shadow-[0_0_12px_rgba(0,212,255,0.4)] rounded transition-all cursor-pointer';
+        showSystemToast('[SYSTEM]', `Scope switched to ${btn.textContent.trim()}.`, 'info');
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', loadLeaderboard);
+  </script>
+</body>
+</html>

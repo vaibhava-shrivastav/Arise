@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <meta content="mobile_tab" name="shell-type"/>
+  <title>ARISE // Daily Quests</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-container": "#ffadb6",
+            "on-secondary-fixed": "#001b3c",
+            "primary-container": "#00d4ff",
+            "background": "#0f1321",
+            "primary-fixed-dim": "#3cd7ff",
+            "inverse-primary": "#00677e",
+            "surface-container-high": "#262939",
+            "surface-variant": "#303444",
+            "on-tertiary-fixed": "#400011",
+            "on-background": "#dfe1f6",
+            "on-surface-variant": "#bbc9cf",
+            "surface": "#0f1321",
+            "tertiary-fixed-dim": "#ffb2ba",
+            "on-secondary-container": "#002955",
+            "surface-container-low": "#171b2a",
+            "surface-container-lowest": "#0a0d1c",
+            "on-primary-fixed": "#001f27",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#004689",
+            "surface-container": "#1b1f2e",
+            "inverse-on-surface": "#2c303f",
+            "outline-variant": "#3c494e",
+            "surface-container-highest": "#303444",
+            "on-surface": "#dfe1f6",
+            "tertiary": "#ffd5d8",
+            "primary": "#a8e8ff",
+            "on-secondary": "#003061",
+            "on-tertiary-fixed-variant": "#910030",
+            "on-primary-container": "#00586b",
+            "secondary-container": "#3491ff",
+            "surface-dim": "#0f1321",
+            "on-tertiary-container": "#a30037",
+            "on-primary-fixed-variant": "#004e5f",
+            "secondary": "#a8c8ff",
+            "primary-fixed": "#b4ebff",
+            "secondary-fixed-dim": "#a8c8ff",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "inverse-surface": "#dfe1f6",
+            "on-primary": "#003642",
+            "tertiary-fixed": "#ffd9dc",
+            "surface-tint": "#3cd7ff",
+            "outline": "#859398",
+            "on-error": "#690005",
+            "secondary-fixed": "#d5e3ff",
+            "on-tertiary": "#670020",
+            "surface-bright": "#353849"
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          spacing: { "margin": "2.5rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "space-md": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem" },
+          fontFamily: {
+            "body-sm": ["Space Mono"],
+            "title-md": ["Space Mono"],
+            "display-lg-mobile": ["Space Grotesk"],
+            "body-lg": ["Space Mono"],
+            "label-md": ["Space Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "label-xs": ["Space Mono"],
+            "display-lg": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"]
+          },
+          fontSize: {
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "title-md": ["16px", { lineHeight: "24px", letterSpacing: "0.12em", fontWeight: "700" }],
+            "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "0.06em", fontWeight: "700" }],
+            "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "label-md": ["11px", { lineHeight: "16px", letterSpacing: "0.15em", fontWeight: "700" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "0.05em", fontWeight: "600" }],
+            "label-xs": ["9px", { lineHeight: "12px", letterSpacing: "0.2em", fontWeight: "700" }],
+            "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "0.08em", fontWeight: "700" }],
+            "headline-sm": ["22px", { lineHeight: "28px", letterSpacing: "0.04em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+  <link href="/css/system.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface font-body-sm text-on-surface min-h-screen flex flex-col relative selection:bg-primary-container selection:text-on-primary-container">
+  <!-- Header Bar -->
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,212,255,0.08)]">
+    <div class="h-16 px-gutter-mobile flex items-center justify-between max-w-md mx-auto">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_#00d4ff] animate-pulse"></div>
+        <div class="flex flex-col">
+          <span class="font-label-xs text-label-xs text-primary-container uppercase tracking-widest">[SYS.VER // 4.12]</span>
+          <h1 class="font-title-md text-title-md text-on-surface uppercase tracking-wider">Daily Quests</h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm">
+        <div class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-xs text-label-xs tracking-wider" id="header-rank">
+          [RANK: E]
+        </div>
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(0,212,255,0.3)] overflow-hidden">
+          <img id="header-avatar-img" class="w-full h-full object-cover hidden" alt="Avatar"/>
+          <span class="material-symbols-outlined text-on-primary text-[18px]" id="header-avatar-icon">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex flex-col relative w-full px-gutter-mobile pt-16 pb-24 bg-surface min-h-screen max-w-md mx-auto">
+    <div class="flex flex-col w-full gap-space-md text-on-surface select-none pb-4">
+      <!-- HUD Quick Header & Sub-system Bar -->
+      <div class="flex items-center justify-between px-space-xs py-space-xs bg-surface-container-lowest/70 backdrop-blur-md rounded-lg">
+        <a href="/status.html" class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-high text-primary hover:bg-surface-variant transition-all active:scale-95 no-underline">
+          <span class="material-symbols-outlined text-[16px] text-primary-container">arrow_back_ios</span>
+          <span class="font-label-md text-label-md tracking-widest text-primary uppercase">[ STATUS ]</span>
+        </a>
+        <div class="flex flex-col items-center">
+          <span class="font-label-xs text-label-xs text-primary-container tracking-widest uppercase animate-pulse" id="quest-date-tag">[ QUEST // TODAY ]</span>
+          <div class="flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_#00d4ff]"></span>
+            <span class="font-title-md text-title-md text-on-surface uppercase tracking-wider">DAILY QUEST</span>
+          </div>
+        </div>
+        <div id="notif-bell" class="relative flex items-center justify-center w-8 h-8 rounded bg-surface-container-high text-on-surface-variant cursor-pointer active:scale-90 transition-transform">
+          <span class="material-symbols-outlined text-[20px] text-primary">notifications</span>
+          <span id="notif-badge" class="hidden absolute -top-1 -right-1 h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-label-xs text-label-xs shadow-[0_0_8px_rgba(255,180,171,0.8)]">0</span>
+        </div>
+      </div>
+
+      <!-- Holographic System Directive Card -->
+      <div class="relative p-space-md bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl overflow-hidden shadow-[0_0_24px_rgba(0,212,255,0.08)]">
+        <span class="absolute top-1.5 left-2 font-body-sm text-primary-container text-xs opacity-80 leading-none select-none">┌</span>
+        <span class="absolute top-1.5 right-2 font-body-sm text-primary-container text-xs opacity-80 leading-none select-none">┐</span>
+        <span class="absolute bottom-1.5 left-2 font-body-sm text-primary-container text-xs opacity-80 leading-none select-none">└</span>
+        <span class="absolute bottom-1.5 right-2 font-body-sm text-primary-container text-xs opacity-80 leading-none select-none">┘</span>
+
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-primary-container/15">
+            <span class="w-2 h-2 rounded-sm bg-primary-container animate-ping"></span>
+            <span class="font-label-xs text-label-xs text-primary-container uppercase tracking-widest">[ SYSTEM DIRECTIVE ]</span>
+          </div>
+          <span class="font-label-xs text-label-xs text-outline tracking-wider" id="quest-id">ID: #DQ-ACTIVE</span>
+        </div>
+
+        <div class="font-headline-sm text-headline-sm text-primary tracking-wide mb-1">
+          PREPARING TO BECOME STRONG
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          Complete the mandatory physical trials to condition the vessel. Failure to comply within the allotted window will initiate automatic transport to the Penalty Zone.
+        </p>
+
+        <!-- Overall Quest Progress HUD Gauge -->
+        <div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-2">
+          <div class="flex justify-between items-baseline">
+            <span class="font-label-xs text-label-xs text-on-surface uppercase tracking-widest flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-primary-container">tune</span>
+              TOTAL PROGRESS
+            </span>
+            <span class="font-title-md text-title-md text-primary-container tracking-wider drop-shadow-[0_0_8px_rgba(0,212,255,0.6)]" id="total-progress-pct">0%</span>
+          </div>
+
+          <!-- Total Progress Gauge Bar -->
+          <div class="h-3 w-full bg-surface-container-highest rounded overflow-hidden p-0.5">
+            <div id="total-progress-bar" class="h-full bg-primary-container shadow-[0_0_10px_#00d4ff] rounded-sm transition-all duration-500" style="width: 0%;"></div>
+          </div>
+
+          <!-- Reward Readout -->
+          <div class="flex items-center gap-2 pt-1">
+            <span class="font-label-xs text-label-xs text-primary-fixed uppercase tracking-wider bg-surface-container-high px-1.5 py-0.5 rounded">[REWARDS]</span>
+            <span class="font-label-xs text-label-xs text-secondary tracking-tight truncate">+150 XP • +1 STREAK • +1 STR/AGI/VIT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Four Daily Routine Item Tiles -->
+      <div class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <span class="font-label-xs text-label-xs uppercase tracking-widest text-primary-container flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            <span id="pending-count-text">PHYSICAL OBJECTIVES [4/4 PENDING]</span>
+          </span>
+          <span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">SYNC: REALTIME</span>
+        </div>
+
+        <!-- Quest Items Container rendered dynamically -->
+        <div id="quest-items-list" class="flex flex-col gap-space-sm">
+          <!-- Loading state placeholder -->
+          <div class="p-4 text-center text-outline font-label-xs animate-pulse">SYNCHRONIZING WITH SYSTEM PROTOCOL...</div>
+        </div>
+      </div>
+
+      <!-- Collapsible Section: Auxiliary Logs -->
+      <div class="rounded-xl bg-surface-container-low overflow-hidden">
+        <button class="w-full p-space-sm bg-surface-container flex items-center justify-between text-left transition-colors hover:bg-surface-container-high" id="toggleLogsBtn" type="button">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-primary-container">vital_signs</span>
+            <span class="font-label-md text-label-md text-primary tracking-widest uppercase">[ AUXILIARY LOGS // RECOVERY ]</span>
+          </div>
+          <span class="material-symbols-outlined text-primary-container transition-transform duration-200" id="drawerChevron">expand_more</span>
+        </button>
+        <div class="flex flex-col gap-space-xs p-space-sm" id="drawerLogsContent">
+          <!-- Row 1: Sleep -->
+          <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/80">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[18px]">bedtime</span>
+              <div class="flex flex-col">
+                <span class="font-label-xs text-label-xs text-on-surface uppercase tracking-wider">Sleep Rest</span>
+                <span class="font-label-xs text-[9px] text-outline">+1 Vitality</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-title-md text-title-md text-primary-container px-2 py-0.5 rounded bg-surface-container" id="sleep-val-display">-- <span class="font-label-xs text-label-xs text-outline">HRS</span></span>
+              <button id="log-sleep-btn" class="px-2.5 py-1 rounded bg-surface-container-high text-primary font-label-xs text-label-xs uppercase hover:bg-primary hover:text-on-primary transition-colors tracking-widest cursor-pointer" type="button">
+                LOG
+              </button>
+            </div>
+          </div>
+          <!-- Row 2: Hydration -->
+          <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/80">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[18px]">water_drop</span>
+              <div class="flex flex-col">
+                <span class="font-label-xs text-label-xs text-on-surface uppercase tracking-wider">Hydration</span>
+                <span class="font-label-xs text-[9px] text-outline">+1 Vitality</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-title-md text-title-md text-primary-container px-2 py-0.5 rounded bg-surface-container" id="water-val-display">-- <span class="font-label-xs text-label-xs text-outline">CUPS</span></span>
+              <button id="log-water-btn" class="px-2.5 py-1 rounded bg-surface-container-high text-primary font-label-xs text-label-xs uppercase hover:bg-primary hover:text-on-primary transition-colors tracking-widest cursor-pointer" type="button">
+                LOG
+              </button>
+            </div>
+          </div>
+          <!-- Row 3: Meditation -->
+          <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/80">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[18px]">spa</span>
+              <div class="flex flex-col">
+                <span class="font-label-xs text-label-xs text-on-surface uppercase tracking-wider">Mental Sync</span>
+                <span class="font-label-xs text-[9px] text-outline">+1 Int & Sense</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-title-md text-title-md text-primary-container px-2 py-0.5 rounded bg-surface-container" id="meditation-val-display">-- <span class="font-label-xs text-label-xs text-outline">MIN</span></span>
+              <button id="log-meditation-btn" class="px-2.5 py-1 rounded bg-surface-container-high text-primary font-label-xs text-label-xs uppercase hover:bg-primary hover:text-on-primary transition-colors tracking-widest cursor-pointer" type="button">
+                LOG
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Penalty Zone Countdown Banner (Ominous Cyber Red HUD) -->
+      <div class="relative p-space-md rounded-xl bg-error-container/20 overflow-hidden shadow-[0_0_24px_rgba(255,51,102,0.2)]">
+        <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-error/20">
+          <div class="flex items-center gap-1.5 text-error">
+            <span class="material-symbols-outlined text-[18px] animate-bounce">warning</span>
+            <span class="font-label-md text-label-md uppercase tracking-widest font-bold drop-shadow-[0_0_8px_rgba(255,180,171,0.6)]">PENALTY ZONE IMMINENT</span>
+          </div>
+          <span class="font-label-xs text-label-xs text-error/80 uppercase tracking-widest">[ CODE: FATAL ]</span>
+        </div>
+        <div class="flex flex-col items-center justify-center py-2">
+          <div class="font-display-lg-mobile text-display-lg-mobile text-error font-bold tracking-widest drop-shadow-[0_0_16px_rgba(255,51,102,0.6)] flex items-center gap-1">
+            <span id="countdown-hours">00</span>
+            <span class="animate-pulse opacity-75">:</span>
+            <span id="countdown-minutes">00</span>
+            <span class="animate-pulse opacity-75">:</span>
+            <span id="countdown-seconds">00</span>
+          </div>
+          <span class="font-label-xs text-label-xs text-error/90 uppercase tracking-widest mt-1">TIME REMAINING UNTIL RESET</span>
+        </div>
+        <div class="p-2 rounded bg-surface-container-lowest/80 mt-1 flex items-start gap-2">
+          <span class="material-symbols-outlined text-error text-[16px] shrink-0 mt-0.5">skull</span>
+          <span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">
+            Non-completion by 23:59:59 automatically triggers <span class="text-error font-bold underline">PENALTY ZONE SANCTIONS</span>: -50 XP loss and streak forfeiture.
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,212,255,0.12)]">
+    <div class="flex justify-around items-center h-20 px-space-xs max-w-md mx-auto">
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/status.html">
+        <span class="material-symbols-outlined text-[22px]">vital_signs</span>
+        <span class="font-label-xs text-label-xs uppercase">Status</span>
+      </a>
+      <a aria-current="page" class="flex flex-col items-center justify-center gap-1 w-14 h-14 transition-colors text-primary-container relative drop-shadow-[0_0_10px_rgba(0,212,255,0.8)]" href="/quests.html">
+        <span class="material-symbols-outlined text-[22px]">assignment</span>
+        <span class="font-label-xs text-label-xs uppercase">Quests</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/history.html">
+        <span class="material-symbols-outlined text-[22px]">monitoring</span>
+        <span class="font-label-xs text-label-xs uppercase">History</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="#" id="nav-shadows">
+        <span class="material-symbols-outlined text-[22px]">group_work</span>
+        <span class="font-label-xs text-label-xs uppercase">Shadows</span>
+      </a>
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="/leaderboard.html">
+        <span class="material-symbols-outlined text-[22px]">military_tech</span>
+        <span class="font-label-xs text-label-xs uppercase">Rank</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/system-ui.js"></script>
+  <script>
+    let currentHunter = null;
+    let currentQuestLog = null;
+
+    const itemMeta = {
+      pushups: { icon: 'fitness_center', label: 'PUSH-UPS', defaultStep: 10, unit: 'reps' },
+      situps: { icon: 'self_improvement', label: 'SIT-UPS', defaultStep: 10, unit: 'reps' },
+      squats: { icon: 'downhill_skiing', label: 'SQUATS', defaultStep: 10, unit: 'reps' },
+      run: { icon: 'directions_run', label: 'RUNNING', defaultStep: 1, unit: 'km' }
+    };
+
+    async function loadQuestData() {
+      try {
+        const [hunter, questLog, notifs] = await Promise.all([
+          apiGet('/api/me'),
+          apiGet('/api/quest/today'),
+          apiGet('/api/notifications?unreadOnly=true').catch(() => [])
+        ]);
+
+        if (!hunter || !questLog) return;
+        currentHunter = hunter;
+        currentQuestLog = questLog;
+
+        // Header
+        document.getElementById('header-rank').textContent = `[RANK: ${hunter.rank || 'E'}]`;
+        if (hunter.avatar) {
+          const img = document.getElementById('header-avatar-img');
+          img.src = hunter.avatar;
+          img.classList.remove('hidden');
+          document.getElementById('header-avatar-icon').classList.add('hidden');
+        }
+
+        // Notification badge
+        const badge = document.getElementById('notif-badge');
+        if (Array.isArray(notifs) && notifs.length > 0) {
+          badge.textContent = notifs.length;
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        }
+
+        // Quest date tag
+        if (questLog.date) {
+          document.getElementById('quest-date-tag').textContent = `[ QUEST // ${questLog.date} ]`;
+        }
+
+        renderQuestItems(questLog);
+        renderAuxiliaryLogs(questLog);
+        startCountdown(hunter.timezone || 'Asia/Kolkata');
+      } catch (err) {
+        console.error('Failed to load quest data:', err);
+      }
+    }
+
+    function renderQuestItems(questLog) {
+      const container = document.getElementById('quest-items-list');
+      container.innerHTML = '';
+
+      const items = questLog.items || [];
+      let totalCompleted = 0;
+      let totalCurrent = 0;
+      let totalTarget = 0;
+
+      items.forEach(item => {
+        const meta = itemMeta[item.key] || { icon: 'fitness_center', label: item.label || item.key.toUpperCase(), defaultStep: 10, unit: item.unit || 'reps' };
+        const current = Number(item.current) || 0;
+        const target = Number(item.target) || 100;
+        const isComplete = item.completed || current >= target;
+        const pct = Math.min(100, Math.round((current / target) * 100));
+
+        totalCurrent += Math.min(current, target);
+        totalTarget += target;
+        if (isComplete) totalCompleted++;
+
+        const tile = document.createElement('div');
+        if (isComplete) {
+          tile.className = "relative p-space-sm rounded-xl bg-gradient-to-r from-surface-container-high via-surface-container-high/90 to-surface-container shadow-[0_0_18px_rgba(0,212,255,0.3)]";
+          tile.innerHTML = `
+            <div class="flex items-center justify-between gap-space-sm mb-2">
+              <div class="flex items-center gap-space-sm min-w-0">
+                <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_16px_#00d4ff]">
+                  <span class="material-symbols-outlined text-[24px]">${meta.icon}</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-title-md text-title-md text-primary truncate">${meta.label}</span>
+                    <span class="font-label-xs text-label-xs bg-primary text-on-primary px-1 rounded uppercase tracking-wider font-bold">[CLEAR]</span>
+                  </div>
+                  <span class="font-label-xs text-label-xs text-secondary-fixed tracking-wider">COMPLETE // ${target} ${meta.unit.toUpperCase()}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm">
+                <div class="text-right">
+                  <span class="font-title-md text-title-md text-primary tracking-wider">${current}</span>
+                  <span class="font-label-xs text-label-xs text-primary">/${target}</span>
+                </div>
+                <div class="w-9 h-9 rounded-lg bg-primary-container/20 text-primary-container flex items-center justify-center shadow-[0_0_12px_rgba(0,212,255,0.5)]">
+                  <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden p-0.5">
+              <div class="bg-primary-container h-full rounded-full shadow-[0_0_12px_#00d4ff] w-full"></div>
+            </div>
+          `;
+        } else {
+          tile.className = "relative p-space-sm rounded-xl bg-surface-container-low transition-all";
+          tile.innerHTML = `
+            <div class="flex items-center justify-between gap-space-sm mb-2">
+              <div class="flex items-center gap-space-sm min-w-0">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_12px_rgba(0,212,255,0.2)]">
+                  <span class="material-symbols-outlined text-[24px]">${meta.icon}</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-title-md text-title-md text-on-surface truncate">${meta.label}</span>
+                  <span class="font-label-xs text-label-xs text-primary tracking-wider">TARGET: ${target} ${meta.unit.toUpperCase()}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm">
+                <div class="text-right">
+                  <span class="font-title-md text-title-md text-primary-container tracking-wider">${current}</span>
+                  <span class="font-label-xs text-label-xs text-outline">/${target}</span>
+                </div>
+                <button class="add-progress-btn w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_10px_rgba(0,212,255,0.4)] active:scale-90 transition-transform cursor-pointer" data-key="${item.key}" data-label="${meta.label}" data-step="${meta.defaultStep}" data-unit="${meta.unit}" type="button">
+                  <span class="material-symbols-outlined text-[20px]">add</span>
+                </button>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden p-0.5">
+              <div class="bg-primary-container h-full rounded-full shadow-[0_0_8px_#00d4ff] transition-all duration-300" style="width: ${pct}%;"></div>
+            </div>
+          `;
+        }
+        container.appendChild(tile);
+      });
+
+      // Total Progress Calculation
+      const totalPct = totalTarget > 0 ? Math.round((totalCurrent / totalTarget) * 100) : 0;
+      document.getElementById('total-progress-pct').textContent = `${totalPct}%`;
+      document.getElementById('total-progress-bar').style.width = `${totalPct}%`;
+
+      const pendingCount = items.length - totalCompleted;
+      document.getElementById('pending-count-text').textContent = `PHYSICAL OBJECTIVES [${pendingCount}/${items.length} PENDING]`;
+
+      // Attach event listeners to Add buttons
+      document.querySelectorAll('.add-progress-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.key;
+          const label = btn.dataset.label;
+          const step = Number(btn.dataset.step) || 10;
+          const unit = btn.dataset.unit;
+          promptProgress(key, label, step, unit);
+        });
+      });
+    }
+
+    async function promptProgress(key, label, defaultAmount, unit) {
+      const inputVal = window.prompt(`[SYSTEM] Enter ${label} progress to record (+${unit}):`, String(defaultAmount));
+      if (!inputVal) return;
+      const amount = parseInt(inputVal, 10);
+      if (isNaN(amount) || amount <= 0) {
+        showSystemToast('[SYSTEM ERROR]', 'Invalid value entered. Must be a positive integer.', 'error');
+        return;
+      }
+
+      try {
+        const result = await apiPost('/api/quest/progress', { key, amount });
+        if (!result) return;
+
+        currentQuestLog = result.questLog;
+        if (result.hunter) currentHunter = result.hunter;
+        renderQuestItems(result.questLog);
+
+        // Check for major events
+        if (result.questCompleted) {
+          showSystemModal({
+            title: 'DAILY QUEST COMPLETE!',
+            subtitle: 'Mandatory Conditioning Achieved',
+            message: 'You have avoided the Penalty Zone and strengthened your hunter vessel.',
+            rewards: ['+150 XP Acquired', '+1 Streak Extended', '+1 Strength, Agility, Vitality'],
+            onConfirm: () => loadQuestData()
+          });
+        } else if (result.leveledUp) {
+          showSystemModal({
+            title: 'LEVEL UP!',
+            subtitle: `Hunter is now Level ${result.hunter.level}`,
+            message: 'Your physiological stats have harmonized with higher System limits.',
+            rewards: [`+${result.xpGained} XP Earned`, `Rank: ${result.hunter.rank}`],
+            onConfirm: () => loadQuestData()
+          });
+        } else if (result.rankedUp) {
+          showSystemModal({
+            title: 'RANK UP!',
+            subtitle: `Assigned Rank: ${result.hunter.rank}`,
+            message: 'The System acknowledges your awakened mana classification.',
+            onConfirm: () => loadQuestData()
+          });
+        } else {
+          showSystemToast('[SYSTEM RECORD]', `Recorded +${amount} ${unit} to ${label}. (+${result.xpGained || 0} XP)`, 'info');
+        }
+      } catch (err) {
+        showSystemToast('[ERROR]', err.message || 'Failed to submit quest progress', 'error');
+      }
+    }
+
+    function renderAuxiliaryLogs(questLog) {
+      // Sleep
+      const sleepBtn = document.getElementById('log-sleep-btn');
+      const sleepDisplay = document.getElementById('sleep-val-display');
+      if (questLog.sleepHours !== null && questLog.sleepHours !== undefined) {
+        sleepDisplay.innerHTML = `${questLog.sleepHours} <span class="font-label-xs text-label-xs text-outline">HRS</span>`;
+        sleepBtn.textContent = 'LOGGED';
+        sleepBtn.disabled = true;
+        sleepBtn.className = 'px-2.5 py-1 rounded bg-surface-container text-outline font-label-xs text-label-xs uppercase tracking-widest cursor-not-allowed opacity-60';
+      }
+
+      // Water
+      const waterBtn = document.getElementById('log-water-btn');
+      const waterDisplay = document.getElementById('water-val-display');
+      if (questLog.waterGlasses !== null && questLog.waterGlasses !== undefined) {
+        waterDisplay.innerHTML = `${questLog.waterGlasses} <span class="font-label-xs text-label-xs text-outline">CUPS</span>`;
+        waterBtn.textContent = 'LOGGED';
+        waterBtn.disabled = true;
+        waterBtn.className = 'px-2.5 py-1 rounded bg-surface-container text-outline font-label-xs text-label-xs uppercase tracking-widest cursor-not-allowed opacity-60';
+      }
+
+      // Meditation
+      const medBtn = document.getElementById('log-meditation-btn');
+      const medDisplay = document.getElementById('meditation-val-display');
+      if (questLog.meditationMinutes !== null && questLog.meditationMinutes !== undefined) {
+        medDisplay.innerHTML = `${questLog.meditationMinutes} <span class="font-label-xs text-label-xs text-outline">MIN</span>`;
+        medBtn.textContent = 'LOGGED';
+        medBtn.disabled = true;
+        medBtn.className = 'px-2.5 py-1 rounded bg-surface-container text-outline font-label-xs text-label-xs uppercase tracking-widest cursor-not-allowed opacity-60';
+      }
+    }
+
+    // Health log handlers
+    document.getElementById('log-sleep-btn')?.addEventListener('click', async () => {
+      const val = window.prompt('[SYSTEM] Log Sleep Hours (0 - 24):', '8');
+      if (!val) return;
+      const sleepHours = parseFloat(val);
+      if (isNaN(sleepHours) || sleepHours < 0 || sleepHours > 24) {
+        showSystemToast('[SYSTEM]', 'Invalid sleep hours (0-24 allowed).', 'error');
+        return;
+      }
+      try {
+        const res = await apiPost('/api/log/health', { sleepHours });
+        if (res) {
+          showSystemToast('[SYSTEM]', 'Sleep rest logged. (+1 Vitality)', 'gold');
+          loadQuestData();
+        }
+      } catch (err) {
+        showSystemToast('[SYSTEM]', err.message, 'error');
+      }
+    });
+
+    document.getElementById('log-water-btn')?.addEventListener('click', async () => {
+      const val = window.prompt('[SYSTEM] Log Hydration (cups of water, 1 - 30):', '8');
+      if (!val) return;
+      const waterGlasses = parseInt(val, 10);
+      if (isNaN(waterGlasses) || waterGlasses < 0 || waterGlasses > 30) {
+        showSystemToast('[SYSTEM]', 'Invalid water glasses (0-30 allowed).', 'error');
+        return;
+      }
+      try {
+        const res = await apiPost('/api/log/health', { waterGlasses });
+        if (res) {
+          showSystemToast('[SYSTEM]', 'Hydration logged. (+1 Vitality)', 'gold');
+          loadQuestData();
+        }
+      } catch (err) {
+        showSystemToast('[SYSTEM]', err.message, 'error');
+      }
+    });
+
+    document.getElementById('log-meditation-btn')?.addEventListener('click', async () => {
+      const val = window.prompt('[SYSTEM] Log Mental Sync / Meditation (minutes, 1 - 600):', '15');
+      if (!val) return;
+      const meditationMinutes = parseInt(val, 10);
+      if (isNaN(meditationMinutes) || meditationMinutes < 0 || meditationMinutes > 600) {
+        showSystemToast('[SYSTEM]', 'Invalid minutes (0-600 allowed).', 'error');
+        return;
+      }
+      try {
+        const res = await apiPost('/api/log/health', { meditationMinutes });
+        if (res) {
+          showSystemToast('[SYSTEM]', 'Mental Sync logged. (+1 Intelligence, +1 Sense)', 'gold');
+          loadQuestData();
+        }
+      } catch (err) {
+        showSystemToast('[SYSTEM]', err.message, 'error');
+      }
+    });
+
+    // Real countdown to midnight in user timezone
+    function startCountdown(tz) {
+      function update() {
+        try {
+          const now = new Date();
+          const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: tz,
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: false
+          });
+          const parts = formatter.formatToParts(now);
+          const h = parseInt(parts.find(p => p.type === 'hour')?.value || '0', 10);
+          const m = parseInt(parts.find(p => p.type === 'minute')?.value || '0', 10);
+          const s = parseInt(parts.find(p => p.type === 'second')?.value || '0', 10);
+
+          let remH = 23 - h;
+          let remM = 59 - m;
+          let remS = 59 - s;
+          if (remS < 0) { remS += 60; remM--; }
+          if (remM < 0) { remM += 60; remH--; }
+          if (remH < 0) remH = 0;
+
+          document.getElementById('countdown-hours').textContent = String(remH).padStart(2, '0');
+          document.getElementById('countdown-minutes').textContent = String(remM).padStart(2, '0');
+          document.getElementById('countdown-seconds').textContent = String(remS).padStart(2, '0');
+        } catch {
+          // fallback local time
+          const now = new Date();
+          const remH = 23 - now.getHours();
+          const remM = 59 - now.getMinutes();
+          const remS = 59 - now.getSeconds();
+          document.getElementById('countdown-hours').textContent = String(remH).padStart(2, '0');
+          document.getElementById('countdown-minutes').textContent = String(remM).padStart(2, '0');
+          document.getElementById('countdown-seconds').textContent = String(remS).padStart(2, '0');
+        }
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    // Toggle drawer
+    const toggleBtn = document.getElementById('toggleLogsBtn');
+    const drawerContent = document.getElementById('drawerLogsContent');
+    const chevron = document.getElementById('drawerChevron');
+    if (toggleBtn && drawerContent && chevron) {
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = drawerContent.classList.toggle('hidden');
+        chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+      });
+    }
+
+    // Shadows
+    document.getElementById('nav-shadows')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSystemToast('[SYSTEM]', 'Monarch Domain: Shadows Army locked until S-Rank Awakening.', 'info');
+    });
+
+    document.addEventListener('DOMContentLoaded', loadQuestData);
+  </script>
+</body>
+</html>

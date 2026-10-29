@@ -14,7 +14,7 @@
 ## Decisions
 - **Rate limiting**: 100 requests per 15 minutes per IP for /api and /auth routes
 - **Body parser limit**: 10kb for express.json()
-- **Helmet CSP**: Allows Google Fonts (fonts.googleapis.com, fonts.gstatic.com) and inline styles for Stitch exports
+- **Helmet CSP**: Allows Google Fonts (fonts.googleapis.com, fonts.gstatic.com), Tailwind CDN (cdn.tailwindcss.com), Google avatars (lh3.googleusercontent.com), and inline styles/scripts ('unsafe-inline') for Stitch exports and dynamic System UI
 - **Module type**: "module" (ESM) for all JS files
 - **Dev script**: Uses Node's built-in `--watch` flag (no nodemon needed for dev)
 - **MongoDB failure handling**: Exit process in production, warn only in development

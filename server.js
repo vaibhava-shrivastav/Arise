@@ -38,15 +38,15 @@ const connectDB = async () => {
 
 await connectDB();
 
-// Helmet with CSP allowing Google Fonts and inline styles
+// Helmet with CSP allowing Google Fonts, Tailwind CDN, and inline styles/scripts
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", 'data:'],
+      scriptSrc: ["'self'", 'https://cdn.tailwindcss.com', "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:', 'https://lh3.googleusercontent.com'],
       connectSrc: ["'self'"],
     },
   },

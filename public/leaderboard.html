@@ -250,7 +250,7 @@
         <span class="material-symbols-outlined text-[22px]">monitoring</span>
         <span class="font-label-xs text-label-xs uppercase">History</span>
       </a>
-      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-on-surface-variant transition-colors hover:text-on-surface" href="#" id="nav-shadows">
+      <a class="flex flex-col items-center justify-center gap-1 w-14 h-14 text-outline/60 hover:text-outline transition-colors cursor-pointer" href="#" id="nav-shadows" title="[SYSTEM] Shadow Army not yet unlocked">
         <span class="material-symbols-outlined text-[22px]">group_work</span>
         <span class="font-label-xs text-label-xs uppercase">Shadows</span>
       </a>
@@ -481,7 +481,7 @@
     // Shadows
     document.getElementById('nav-shadows')?.addEventListener('click', (e) => {
       e.preventDefault();
-      showSystemToast('[SYSTEM]', 'Monarch Domain: Shadows Army locked until S-Rank Awakening.', 'info');
+      showSystemToast('[SYSTEM]', 'Shadow Army not yet unlocked. Requires S-Rank Awakening.', 'info');
     });
 
     // Scope selection toggle
@@ -499,3 +499,4 @@
   </script>
 </body>
 </html>
+
